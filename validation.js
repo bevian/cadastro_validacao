@@ -9,9 +9,9 @@ function validateForm() {
     message.className = 'mt-3';
 
     // Valida nome
-    const nameRegex = /^[a-zA-Z]{7,}$/; // pelo menos 7 letras
+    const nameRegex = /^[a-zA-Z]{2,}$/; // pelo menos 2 letras
     if (!nameRegex.test(firstName)) {
-        message.textContent = 'O primeiro nome deve ter pelo menos 7 letras.';
+        message.textContent = 'O primeiro nome deve ter pelo menos 2 letras.';
         message.classList.add('text-danger');
         return;
     }
@@ -87,4 +87,14 @@ function validateForm() {
             message.classList.add('text-warning');
         }
     }
+
+    // Se todas as validações passarem, exibe a mensagem de sucesso
+    if (message.classList.contains('text-success') || message.classList.contains('text-warning') || message.classList.contains('text-danger')) {
+        // Validação específica da senha já definiu uma mensagem
+        return;
+    }
+
+    // Cadastro validado
+    message.textContent = 'Cadastro validado com sucesso!';
+    message.classList.add('text-success');
 }
