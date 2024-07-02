@@ -10,9 +10,9 @@ function validateForm() {
     message.textContent = '';
 
     // Valida nome
-    const nameRegex = /^[a-zA-Z]{7,}$/; // pelo menos 7 letras
+    const nameRegex = /^[a-zA-Z]{2,}$/; // pelo menos 2 letras
     if (!nameRegex.test(firstName)) {
-        message.textContent = 'O primeiro nome deve ter pelo menos 7 letras.';
+        message.textContent = 'O primeiro nome deve ter pelo menos 2 letras.';
         message.classList.add('text-danger');
         return;
     }
