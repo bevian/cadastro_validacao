@@ -5,10 +5,14 @@ function validateForm() {
     const password = document.getElementById('password').value;
     const message = document.getElementById('validation-message');
 
+    // Limpa as classes de estilo de validação anterior
+    message.className = 'mt-3';
+
     // Valida nome
     const nameRegex = /^[a-zA-Z]{7,}$/; // pelo menos 7 letras
     if (!nameRegex.test(firstName)) {
         message.textContent = 'O primeiro nome deve ter pelo menos 7 letras.';
+        message.classList.add('text-danger');
         return;
     }
 
@@ -16,6 +20,7 @@ function validateForm() {
     const birthDateRegex = /^([0-2][0-9]|3[01])\/(0[1-9]|1[012])\/(19[0-9]{2}|20[01][0-9]|202[0-2])$/;
     if (!birthDateRegex.test(birthDateStr)) {
         message.textContent = 'Data de nascimento inválida. Use o formato dd/mm/yyyy e certifique-se de que o ano está entre 1900 e 2022.';
+        message.classList.add('text-danger');
         return;
     }
 
@@ -24,6 +29,7 @@ function validateForm() {
 
     if (birthYear < 1900 || birthYear > 2022) {
         message.textContent = 'Ano de nascimento deve estar entre 1900 e 2022.';
+        message.classList.add('text-danger');
         return;
     }
 
@@ -31,6 +37,7 @@ function validateForm() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(br|com|net|org)$/;
     if (!emailRegex.test(email)) {
         message.textContent = 'Email inválido. Deve conter @, seguido de domínio válido (.br, .com, .net, org).';
+        message.classList.add('text-danger');
         return;
     }
 
@@ -41,35 +48,43 @@ function validateForm() {
 
     if (password.length < 6 || password.length > 20) {
         message.textContent = 'A senha deve ter entre 6 e 20 caracteres.';
+        message.classList.add('text-danger');
         return;
     }
 
     if (!specialCharRegex.test(password) || !numberRegex.test(password) || !/[a-zA-Z]/.test(password)) {
         message.textContent = 'Senha inválida. Deve conter pelo menos um caractere especial, um número e uma letra.';
+        message.classList.add('text-danger');
         return;
     }
 
     if (password.includes(firstName) || password.includes(birthYear.toString())) {
         message.textContent = 'A senha não deve conter o primeiro nome ou o ano de nascimento.';
+        message.classList.add('text-danger');
         return;
     }
 
     // Força senha
     if (password.length < 8) {
         message.textContent = 'Senha válida, mas fraca.';
+        message.classList.add('text-danger');
     } else if (password.length <= 12) {
         if (specialCharRegex.test(password) && upperCaseRegex.test(password) && numberRegex.test(password)) {
             message.textContent = 'Senha moderada.';
+            message.classList.add('text-warning');
         } else {
             message.textContent = 'Senha fraca.';
+            message.classList.add('text-danger');
         }
     } else {
         if (password.split('').filter(c => specialCharRegex.test(c)).length > 1 &&
             password.split('').filter(c => numberRegex.test(c)).length > 1 &&
             password.split('').filter(c => upperCaseRegex.test(c)).length > 1) {
             message.textContent = 'Senha forte.';
+            message.classList.add('text-success');
         } else {
             message.textContent = 'Senha moderada.';
+            message.classList.add('text-warning');
         }
     }
 }
