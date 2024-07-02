@@ -11,7 +11,7 @@
     <!-- CSS personalizado -->
     <style>
         body {
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #6f42c1, #b373dc);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -57,24 +57,24 @@
         <h1>Cadastro de Usuário</h1>
         <form id="registration-form">
             <div class="form-group">
-                <label for="first-name">Primeiro Nome:</label>
+                <label for="first-name" class="form-label">Primeiro Nome:</label>
                 <input type="text" class="form-control" id="first-name" name="first-name" required>
             </div>
             <div class="form-group">
-                <label for="birth-date">Data de Nascimento:</label>
+                <label for="birth-date" class="form-label">Data de Nascimento:</label>
                 <input type="text" class="form-control" id="birth-date" name="birth-date" required>
             </div>
             <div class="form-group">
-                <label for="email">Email:</label>
+                <label for="email" class="form-label">Email:</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="password">Senha:</label>
+                <label for="password" class="form-label">Senha:</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <button type="button" class="btn btn-primary w-100" onclick="validateForm()">Registrar</button>
         </form>
-        <div id="validation-message" class="mt-3"></div>
+        <div id="validation-message" class="mt-3 text-danger text-center"></div>
     </div>
     <script src="validation.js"></script>
     <!-- Usando o ready para colocar logo na abertura da página -->
