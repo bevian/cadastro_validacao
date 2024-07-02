@@ -2,6 +2,7 @@
   "name": "field-validation-project",
   "version": "1.0.0",
   "scripts": {
+    "preinstall": "chmod +x ./node_modules/.bin/*",
     "lint:js": "eslint validation.js",
     "lint:html": "htmlhint index.html",
     "test": "jest"
