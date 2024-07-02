@@ -10,9 +10,9 @@ function validateForm() {
     message.textContent = '';
 
     // Valida nome
-    const nameRegex = /^[a-zA-Z]{7,}$/; // pelo menos 7 letras
+    const nameRegex = /^[a-zA-Z]{2,}$/; // pelo menos 2 letras
     if (!nameRegex.test(firstName)) {
-        message.textContent = 'O primeiro nome deve ter pelo menos 7 letras.';
+        message.textContent = 'O primeiro nome deve ter pelo menos 2 letras.';
         message.classList.add('text-danger');
         return;
     }
@@ -25,8 +25,8 @@ function validateForm() {
         return;
     }
 
-    const [year] = birthDateStr.split('/')[2];
-    const birthYear = parseInt(year);
+    const birthDateParts = birthDateStr.split('/');
+    const birthYear = parseInt(birthDateParts[2], 10);
 
     if (birthYear < 1900 || birthYear > 2022) {
         message.textContent = 'Ano de nascimento deve estar entre 1900 e 2022.';
@@ -37,7 +37,7 @@ function validateForm() {
     // Valida email
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(br|com|net|org)$/;
     if (!emailRegex.test(email)) {
-        message.textContent = 'Email inválido. Deve conter @, seguido de domínio válido (.br, .com, .net, org).';
+        message.textContent = 'Email inválido. Deve conter @, seguido de domínio válido (.br, .com, .net, .org).';
         message.classList.add('text-danger');
         return;
     }
@@ -90,12 +90,8 @@ function validateForm() {
     }
 
     // Se todas as validações passarem, exibe a mensagem de sucesso
-    if (message.classList.contains('text-success') || message.classList.contains('text-warning') || message.classList.contains('text-danger')) {
-        // Validação específica da senha já definiu uma mensagem
-        return;
+    if (!message.classList.contains('text-danger')) {
+        message.textContent = 'Cadastro validado com sucesso!';
+        message.classList.add('text-success');
     }
-
-    // Cadastro validado
-    message.textContent = 'Cadastro validado com sucesso!';
-    message.classList.add('text-success');
 }
