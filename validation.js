@@ -7,7 +7,6 @@ function validateForm() {
 
     // Limpa as classes de estilo de validação anterior
     message.className = 'mt-3';
-    message.textContent = '';
 
     // Valida nome
     const nameRegex = /^[a-zA-Z]{2,}$/; // pelo menos 2 letras
