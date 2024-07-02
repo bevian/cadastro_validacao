@@ -19,7 +19,7 @@ function validateForm() {
         return;
     }
 
-    const [day, month, year] = birthDateStr.split('/');
+    const [year] = birthDateStr.split('/')[2];
     const birthYear = parseInt(year);
 
     if (birthYear < 1900 || birthYear > 2022) {
